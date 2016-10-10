@@ -1,0 +1,52 @@
+﻿# Project 3: Jukebox
+
+* Author: Henry J. Schade
+* Class: CS 121 Section 004
+* Semester: Fall 2016
+* Project Name: Jukebox
+
+## Overview
+Develop a class to represent a playlist of songs. The driver class with a menu and some methods for 
+reading Song data from files will be provided. You will be reusing the class you write later in the 
+semester.
+
+
+## Compiling and Using
+Do the following from the command line and in the Project directory.
+Compile using: 
+	"javac [Project Name]".
+Run using: 
+	"java [Project Name]"
+
+
+## Discussion
+Everything was pretty straight forward.
+When I first wrote my PlayList constructor, I put "public void PlayList(String strPlayListName){".
+The void caused issue when the rest of the code tried instanciating a PlayList, it took just a bit to figure 
+out where I had messed up.
+
+
+## Extra Credit 
+TBD
+
+
+## Sources used
+The project assignment page, and links there in as neccessary:
+http://cs.boisestate.edu/~cs121/projects/p3/
+
+Google search engine:
+For java syntax lookup.  Quick searches on different java methods, and their paramaters.
+
+The code has also been documented with URL's, near the relevent code blocks, that were used to "discover" how 
+to implement things we have not been taught yet, that were above and beyond.
+
+Misc URL's that helped along the way:
+
+ArrayList info (as a referance this time):
+http://docs.oracle.com/javase/6/docs/api/java/util/ArrayList.html
+
+How to setup sorting of ArrayLists (this is still involved, and I'm still wrapping my head around it):
+http://beginnersbook.com/2013/12/java-arraylist-of-object-sort-example-comparable-and-comparator/
+http://stackoverflow.com/questions/18441846/how-to-sort-an-arraylist-in-java
+
+
