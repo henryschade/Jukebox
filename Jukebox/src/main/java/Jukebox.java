@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
  * And finally, make sure everything works together and listen to your music using this class.
  *
  * @author CS121 Instructors
+ * @author Henry J. Schade
  */
 public class Jukebox
 {
@@ -78,7 +79,7 @@ public class Jukebox
 						do {
 							System.out.print("Choose a valid song id: ");
 							id = Integer.parseInt(scan.nextLine().trim());
-						} while(id < 0 || id > playList.getNumSongs());
+						} while(id < 0 || id >= playList.getNumSongs());
 						playList.playSong(id);
 						System.out.println("Playing song: " + playList.getPlaying());
 					} else {
@@ -97,7 +98,7 @@ public class Jukebox
 						do {
 							System.out.print("Choose a valid song id: ");
 							id = Integer.parseInt(scan.nextLine().trim());
-						} while(id < 0 || id > playList.getNumSongs());
+						} while(id < 0 || id >= playList.getNumSongs());
 						playList.removeSong(id);
 						System.out.println("Removed song.");
 					} else {
