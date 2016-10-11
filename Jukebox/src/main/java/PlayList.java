@@ -102,7 +102,7 @@ public class PlayList
 		//}
 		Song objSong = getSong(intIndex);
 		if (objSong != null){
-			this.objPlayList.Remove(intIndex);
+			this.objPlayList.remove(intIndex);
 		}
 
 		return objSong;
@@ -239,7 +239,7 @@ public class PlayList
 
 		strRet = "------------------" + "\r\n";
 		//strRet = strRet + getPlayListName() + "(" + getNumSongs() + ") songs)";
-		strRet = strRet + getName() + "(" + getNumSongs() + ") songs" + "\r\n";
+		strRet = strRet + getName() + " (" + getNumSongs() + ") songs" + "\r\n";
 		strRet = strRet + "------------------" + "\r\n";
 
 //		int intX = 0;
