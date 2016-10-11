@@ -78,7 +78,7 @@ public class Jukebox
 						do {
 							System.out.print("Choose a valid song id: ");
 							id = Integer.parseInt(scan.nextLine().trim());
-						} while(id < 0 || id > playList.getNumSongs());
+						} while(id < 0 || id >= playList.getNumSongs());
 						playList.playSong(id);
 						System.out.println("Playing song: " + playList.getPlaying());
 					} else {

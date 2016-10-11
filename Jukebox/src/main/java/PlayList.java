@@ -17,8 +17,6 @@ public class PlayList
 	private Song objCurSong;
 	private ArrayList<Song> objPlayList;
 
-	private Song objSong;
-
 	//Constructor(s)
 	public PlayList(String strPlayListName){
 		this.strPlayListName = strPlayListName;
@@ -36,6 +34,7 @@ public class PlayList
 		return this.strPlayListName;
 	}
 	public String getName(){
+		//Needed so the default Jukebox code will work, and probably the tester too.
 		return getPlayListName();
 	}
 
@@ -49,6 +48,7 @@ public class PlayList
 		return this.strPlayListName;
 	}
 	public String setName(String strNewPlayListName){
+		//Needed so the default Jukebox code will work, and probably the tester too.
 		return setPlayListName(strNewPlayListName);
 	}
 
@@ -91,7 +91,7 @@ public class PlayList
 		//Takes an integer index as an argument and returns the removed song. 
 		//Removes the song from the songList. Returns null if the index is out of range.
 
-		Song objSong = new Song("","",0,"");
+		//Song objSong = new Song("","",0,"");
 		//if ((intIndex >= this.objPlayList.size()) || (intIndex < 0)){
 		//	//return null;
 		//	objSong = null;
@@ -100,7 +100,7 @@ public class PlayList
 		//	objSong = this.objPlayList.get(intIndex);
 		//	this.objPlayList.Remove(intIndex);
 		//}
-		objSong = getSong(intIndex);
+		Song objSong = getSong(intIndex);
 
 		return objSong;
 	}
@@ -139,7 +139,7 @@ public class PlayList
 	public Song getSong(int intIndex){
 		//Takes an integer index as an argument and returns the song at that index, if it exists. Returns null if it does not exist.
 
-
+		Song objSong = null;
 		if ((intIndex >= this.objPlayList.size()) || (intIndex < 0)){
 			//return null;
 			objSong = null;
@@ -159,8 +159,12 @@ public class PlayList
 	public void playSong(int intIndex){
 		//Takes an integer index as an argument and plays the corresponding song in the play list. If the index is out of range, do nothing.
 
-		objSong = getSong(intIndex);
-		if (objSong != null){
+		Song objSong = getSong(intIndex);
+		if (objSong == null){
+			System.out.println("Failed to get the song.");
+		}
+		else{
+			objCurSong = objSong;
 			objSong.play();
 		}
 	}
@@ -204,10 +208,10 @@ public class PlayList
 			}
 		}
 
-		strRet = "The average play time is: " + dblAvgPlayTime + " seconds";
-		strRet = strRet + "The shortest song is " + strShortest;
-		strRet = strRet + "The longest song is: " + strLongest;
-		strRet = strRet + "Total play time: " + intTotalPlayTime + " seconds";
+		strRet = "The average play time is: " + dblAvgPlayTime + " seconds" + "\r\n";
+		strRet = strRet + "The shortest song is " + strShortest + "\r\n";
+		strRet = strRet + "The longest song is: " + strLongest + "\r\n";
+		strRet = strRet + "Total play time: " + intTotalPlayTime + " seconds" + "\r\n";
 
 		return strRet;
 	}
@@ -228,11 +232,12 @@ public class PlayList
 			//------------------
 
 		String strRet = "";
+		Song objSong = new Song("","",0,"");
 
-		strRet = "------------------";
+		strRet = "------------------" + "\r\n";
 		//strRet = strRet + getPlayListName() + "(" + getNumSongs() + ") songs)";
-		strRet = strRet + getName() + "(" + getNumSongs() + ") songs)";
-		strRet = strRet + "------------------";
+		strRet = strRet + getName() + "(" + getNumSongs() + ") songs" + "\r\n";
+		strRet = strRet + "------------------" + "\r\n";
 
 //		int intX = 0;
 //		for (Song objSong : this.objPlayList){
@@ -241,10 +246,10 @@ public class PlayList
 //		}
 		for (int intX = 0; intX < this.objPlayList.size(); intX++){
 			objSong = this.objPlayList.get(intX);
-			strRet = strRet + "(" + intX + ") " + objSong.toString();
+			strRet = strRet + "(" + intX + ") " + objSong.toString() + "\r\n";
 		}
 
-		strRet = strRet + "------------------";
+		strRet = strRet + "------------------" + "\r\n";
 
 		return strRet;
 	}
