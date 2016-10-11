@@ -34,7 +34,7 @@ public class PlayList
 	}
 	public String getName(){
 		//Needed so the default Jukebox code will work, and probably the tester too.
-		return getPlayListName();
+		return this.getPlayListName();
 	}
 
 	/** setPlayListName
@@ -47,7 +47,7 @@ public class PlayList
 	}
 	public String setName(String strNewPlayListName){
 		//Needed so the default Jukebox code will work, and probably the tester too.
-		return setPlayListName(strNewPlayListName);
+		return this.setPlayListName(strNewPlayListName);
 	}
 
 	/** getPlaying
@@ -83,7 +83,7 @@ public class PlayList
 	public Song removeSong(int intIndex){
 		//Takes an integer index as an argument and returns the removed song. 
 		//Removes the song from the songList. Returns null if the index is out of range.
-		Song objSong = getSong(intIndex);
+		Song objSong = this.getSong(intIndex);
 		if (objSong != null){
 			this.objPlayList.remove(intIndex);
 		}
@@ -138,7 +138,7 @@ public class PlayList
 	 */
 	public void playSong(int intIndex){
 		//Takes an integer index as an argument and plays the corresponding song in the play list. If the index is out of range, do nothing.
-		Song objSong = getSong(intIndex);
+		Song objSong = this.getSong(intIndex);
 		if (objSong == null){
 			System.out.println("Failed to get the song.");
 		}
@@ -169,8 +169,13 @@ public class PlayList
 		int intTotalPlayTime = 0;
 		String strRet = "";
 
-		intTotalPlayTime = getTotalPlayTime();
-		dblAvgPlayTime = (intTotalPlayTime / getNumSongs());
+		intTotalPlayTime = this.getTotalPlayTime();
+		if (this.getNumSongs() > 0){
+			dblAvgPlayTime = (intTotalPlayTime / this.getNumSongs());
+		}
+		else{
+			dblAvgPlayTime = 0;
+		}
 
 		//loop through each song, looking for longest and shortest playtimes
 		for (Song objSong : this.objPlayList){
@@ -214,7 +219,7 @@ public class PlayList
 		Song objSong = new Song("","",0,"");
 
 		strRet = "------------------" + "\r\n";
-		strRet = strRet + getPlayListName() + " (" + getNumSongs() + ") songs" + "\r\n";
+		strRet = strRet + this.getPlayListName() + " (" + this.getNumSongs() + ") songs" + "\r\n";
 		strRet = strRet + "------------------" + "\r\n";
 
 		for (int intX = 0; intX < this.objPlayList.size(); intX++){
