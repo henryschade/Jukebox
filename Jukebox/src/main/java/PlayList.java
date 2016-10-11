@@ -101,6 +101,9 @@ public class PlayList
 		//	this.objPlayList.Remove(intIndex);
 		//}
 		Song objSong = getSong(intIndex);
+		if (objSong != null){
+			this.objPlayList.Remove(intIndex);
+		}
 
 		return objSong;
 	}
