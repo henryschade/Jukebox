@@ -22,7 +22,7 @@ Run using:
 ## Discussion
 Everything was pretty straight forward.
 When I first wrote my PlayList constructor, I put "public void PlayList(String strPlayListName){".
-The void caused issue when the rest of the code tried instanciating a PlayList, it took just a bit to figure 
+The void caused issue when the rest of the code tried instantiating a PlayList, it took a bit to figure 
 out where I had messed up.
 
 

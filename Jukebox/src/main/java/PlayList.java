@@ -5,7 +5,7 @@ import java.util.ArrayList;
  *
  * Here is an example of how a play list can be created.
  * <pre>
- *     
+ *     objPlayList = new PlayList("Play_List_Name");
  * </pre>
  *
  * @author Henry J. Schade
@@ -216,7 +216,8 @@ public class PlayList
 			//------------------
 
 		String strRet = "";
-		Song objSong = new Song("","",0,"");
+		//Song objSong = new Song("","",0,"");
+		Song objSong = null;
 
 		strRet = "------------------" + "\r\n";
 		strRet = strRet + this.getPlayListName() + " (" + this.getNumSongs() + ") songs" + "\r\n";
