@@ -116,7 +116,7 @@ public class Jukebox
 					System.out.println();
 					break;
 				case 's':
-					//using private to keep the search arraylist limited to the switch scope
+					System.out.println("Enter search string:");
 					ArrayList<Song> objSearchList = playList.search(scan.nextLine().trim());
 
 					if (objSearchList.size() > 0){
