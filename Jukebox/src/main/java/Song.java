@@ -31,6 +31,7 @@ public class Song
 	private String filePath;
 	private int playCount;
 
+	//Constructors
 	/**
 	 * Constructor: Builds a song using the given parameters.
 	 * @param title song's title
@@ -55,6 +56,7 @@ public class Song
 		}
 	}
 
+	//Getters and Setters
 	/**
 	 * Returns the title of this <code>Song</code>.
 	 * @return the title
@@ -140,6 +142,7 @@ public class Song
 		return playCount;
 	}
 
+	//Worker methods
 	/**
 	 * Plays this song asynchronously.
 	 */
@@ -161,6 +164,7 @@ public class Song
 		}
 	}
 
+	//Overrides
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+//import java.lang.*;
+import java.lang.String;
 
 /**
  * Uses an ArrayList of Song objects to keep track of a user's songs in a play list.
@@ -201,6 +203,30 @@ public class PlayList
 		return strRet;
 	}
 
+	/**
+	 * Returns song indexes that match the query.
+	 * @param query = what to search for in a song title or artist field
+	 * @return an arraylist of all song indexes that match the query provided
+	 */
+	public ArrayList<Song> search(String query){
+		//variables
+		ArrayList<Song> objSearchList = new ArrayList<Song>();
+
+		for (Song objSong : this.objPlayList){
+		//for (int intX = 0; intX < this.objPlayList.size(); intX++){
+			//Song objSong = this.objPlayList.getSong(intX);
+
+			//https://www.tutorialspoint.com/java/lang/string_contains.htm
+			if ((objSong.getTitle().contains(query)) || (objSong.getArtist().contains(query))){
+				objSearchList.add(objSong);
+				//objSearchList.add(intX);
+			}
+		}
+
+		return objSearchList;
+	}
+
+	//Overrides
 	/** toString
 	 * @param nothing
 	 * @return the playlist list/display

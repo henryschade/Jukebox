@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 /**
  * This is a driver class for testing your <code>Song</code> and <code>PlayList</code> classes.
@@ -70,6 +71,7 @@ public class Jukebox
 					System.out.println("(a) add song");
 					System.out.println("(d) delete song");
 					System.out.println("(i) info");
+					System.out.println("(s) search");
 					System.out.println("(q) quit");
 					break;
 				case 'p':
@@ -112,6 +114,38 @@ public class Jukebox
 				case 'i':
 					System.out.println(playList.getInfo());
 					System.out.println();
+					break;
+				case 's':
+					//using private to keep the search arraylist limited to the switch scope
+					ArrayList<Song> objSearchList = playList.search(scan.nextLine().trim());
+
+					if (objSearchList.size() > 0){
+						//Display a list of songs found
+						int intX = 0;
+
+						for (intX = 0; intX < objSearchList.size(); intX++){
+							System.out.println("(" + intX + ") " + objSearchList.get(intX).toString());
+						}
+
+						int id;
+						do {
+							System.out.print("Choose a song id to play (m for main menu): ");
+							id = Integer.parseInt(scan.nextLine().trim());
+						} while(id < 0 || id >= objSearchList.size());
+
+						Song objTempSong = objSearchList.get(id);
+
+						for (intX = 0; intX < playList.getNumSongs(); intX++){
+							if ((playList.getSong(intX).getArtist() == objTempSong.getArtist()) && (playList.getSong(intX).getTitle() == objTempSong.getTitle())){
+								playList.playSong(intX);
+								break;
+							}
+						}
+						//System.out.println("Playing song: " + playList.getPlaying());
+					}
+					else{
+						System.out.println("No songs found that match your search query.");
+					}
 					break;
 				case 'q':
 					System.out.println("Goodbye!");
