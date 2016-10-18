@@ -62,17 +62,22 @@ public class Jukebox
 		{
 			System.out.print("What do you want to do (type 'm' to show menu)? ");
 			option = scan.nextLine().trim().charAt(0);
+			////http://stackoverflow.com/questions/12715246/how-to-check-if-a-character-in-a-string-is-a-digit-or-letter
+			//if (!(Character.isLetter(option))){
+			//	option = 'z';
+			//}
 
 			switch(option)
 			{
 				case 'm':
-					System.out.println("(p) play song");
-					System.out.println("(l) list songs");
-					System.out.println("(a) add song");
-					System.out.println("(d) delete song");
-					System.out.println("(i) info");
-					System.out.println("(s) search");
-					System.out.println("(q) quit");
+					//System.out.println("(p) play song");
+					//System.out.println("(l) list songs");
+					//System.out.println("(a) add song");
+					//System.out.println("(d) delete song");
+					//System.out.println("(i) info");
+					//System.out.println("(s) search");
+					//System.out.println("(q) quit");
+					ShowMenu();
 					break;
 				case 'p':
 					if(playList.getNumSongs() > 0) {
@@ -122,16 +127,32 @@ public class Jukebox
 					if (objSearchList.size() > 0){
 						//Display a list of songs found
 						int intX = 0;
-
-						for (intX = 0; intX < objSearchList.size(); intX++){
-							System.out.println("(" + intX + ") " + objSearchList.get(intX).toString());
-						}
-
 						int id;
+						char chChar;
+
 						do {
-							System.out.print("Choose a song id to play (m for main menu): ");
-							id = Integer.parseInt(scan.nextLine().trim());
+							for (intX = 0; intX < objSearchList.size(); intX++){
+								System.out.println("(" + intX + ") " + objSearchList.get(intX).toString());
+							}
+
+							//System.out.print("Choose a song id to play (m for main menu): ");
+							System.out.print("Choose a song id to play (m to go back to main menu): ");
+							id = -1;
+							chChar = scan.nextLine().trim().charAt(0);
+							//http://stackoverflow.com/questions/12715246/how-to-check-if-a-character-in-a-string-is-a-digit-or-letter
+							if (Character.isDigit(chChar)){
+								id = Character.getNumericValue(chChar);
+							}
+							else{
+								if (chChar == 'm'){
+									//ShowMenu();
+									break;
+								}
+							}
 						} while(id < 0 || id >= objSearchList.size());
+						if (chChar == 'm'){
+							break;
+						}
 
 						Song objTempSong = objSearchList.get(id);
 
@@ -156,6 +177,16 @@ public class Jukebox
 			}
 		}
 		while(option != 'q');
+	}
+
+	private static void ShowMenu(){
+		System.out.println("(p) play song");
+		System.out.println("(l) list songs");
+		System.out.println("(a) add song");
+		System.out.println("(d) delete song");
+		System.out.println("(i) info");
+		System.out.println("(s) search");
+		System.out.println("(q) quit");
 	}
 
 	/**
