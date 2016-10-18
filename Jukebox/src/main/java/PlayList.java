@@ -1,6 +1,6 @@
 import java.util.ArrayList;
-//import java.lang.*;
 import java.lang.String;
+import java.text.DecimalFormat;
 
 /**
  * Uses an ArrayList of Song objects to keep track of a user's songs in a play list.
@@ -28,7 +28,6 @@ public class PlayList
 
 	//Methods - Getters and Setters
 	/** getPlayListName
-	 * @param nothing
 	 * @return the play list name
 	 */
 	public String getPlayListName(){
@@ -40,7 +39,7 @@ public class PlayList
 	}
 
 	/** setPlayListName
-	 * @param strTitle song's title
+	 * @param strNewPlayListName = song's title
 	 * @return the play list name
 	 */
 	public String setPlayListName(String strNewPlayListName){
@@ -53,7 +52,6 @@ public class PlayList
 	}
 
 	/** getPlaying
-	 * @param nothing
 	 * @return the current song playing
 	 */
 	public Song getPlaying(){
@@ -61,7 +59,6 @@ public class PlayList
 	}
 
 	/** getPlayList
-	 * @param nothing
 	 * @return the play list
 	 */
 	public ArrayList<Song> getPlayList(){
@@ -70,8 +67,7 @@ public class PlayList
 
 	//Methods - That do work
 	/** addSong
-	 * @param a song
-	 * @return nothing
+	 * @param objNewSong = a song
 	 */
 	public void addSong(Song objNewSong){
 		//Takes a song as an argument and returns nothing. Adds it to the songList.
@@ -79,7 +75,7 @@ public class PlayList
 	}
 
 	/** removeSong
-	 * @param integer index
+	 * @param intIndex = integer index
 	 * @return the removed song (null if the index is out of range)
 	 */
 	public Song removeSong(int intIndex){
@@ -94,7 +90,6 @@ public class PlayList
 	}
 
 	/** getNumSongs
-	 * @param nothing
 	 * @return the number of songs in the playlist.
 	 */
 	public int getNumSongs(){
@@ -103,7 +98,6 @@ public class PlayList
 	}
 
 	/** getTotalPlayTime
-	 * @param nothing
 	 * @return the total playtime of all songs in the playlist (in seconds)
 	 */
 	public int getTotalPlayTime(){
@@ -117,7 +111,7 @@ public class PlayList
 	}
 
 	/** getSong
-	 * @param integer index 
+	 * @param intIndex = integer index 
 	 * @return the song at that index. (null if song not exist)
 	 */
 	public Song getSong(int intIndex){
@@ -135,14 +129,13 @@ public class PlayList
 	}
 
 	/** playSong
-	 * @param  integer index
-	 * @return nothing
+	 * @param intIndex = integer index
 	 */
 	public void playSong(int intIndex){
 		//Takes an integer index as an argument and plays the corresponding song in the play list. If the index is out of range, do nothing.
 		Song objSong = this.getSong(intIndex);
 		if (objSong == null){
-			System.out.println("Failed to get the song.");
+			//System.out.println("Failed to get the song.");
 		}
 		else{
 			objCurSong = objSong;
@@ -151,7 +144,6 @@ public class PlayList
 	}
 
 	/** getInfo
-	 * @param nothing
 	 * @return Assorted stats about the play list
 	 */
 	public String getInfo(){
@@ -170,35 +162,37 @@ public class PlayList
 		int intLongest = -1;
 		int intTotalPlayTime = 0;
 		String strRet = "";
+		DecimalFormat objDFormat = new DecimalFormat("0.00");
 
 		intTotalPlayTime = this.getTotalPlayTime();
 		if (this.getNumSongs() > 0){
-			dblAvgPlayTime = (intTotalPlayTime / this.getNumSongs());
+			dblAvgPlayTime = ((double) intTotalPlayTime / this.getNumSongs());
+
+			//loop through each song, looking for longest and shortest playtimes
+			for (Song objSong : this.objPlayList){
+				intPlayTime = objSong.getPlayTime();
+
+				if ((intShortest == -1) || (intPlayTime < intShortest)){
+					intShortest = intPlayTime;
+					//strShortest = objSong.getTitle();
+					strShortest = objSong.toString();
+				}
+				if ((intLongest == -1) || (intPlayTime > intLongest)){
+					intLongest = intPlayTime;
+					//strLongest = objSong.getTitle();
+					strLongest = objSong.toString();
+				}
+			}
+
+			strRet = "The average play time is: " + objDFormat.format(dblAvgPlayTime) + " seconds" + "\r\n";
+			strRet = strRet + "The shortest song is: " + strShortest + "\r\n";
+			strRet = strRet + "The longest song is: " + strLongest + "\r\n";
+			strRet = strRet + "Total play time: " + intTotalPlayTime + " seconds" + "\r\n";
 		}
 		else{
 			dblAvgPlayTime = 0;
+			strRet = "There are no songs.";
 		}
-
-		//loop through each song, looking for longest and shortest playtimes
-		for (Song objSong : this.objPlayList){
-			intPlayTime = objSong.getPlayTime();
-
-			if ((intShortest == -1) || (intPlayTime < intShortest)){
-				intShortest = intPlayTime;
-				//strShortest = objSong.getTitle();
-				strShortest = objSong.toString();
-			}
-			if ((intLongest == -1) || (intPlayTime > intLongest)){
-				intLongest = intPlayTime;
-				//strLongest = objSong.getTitle();
-				strLongest = objSong.toString();
-			}
-		}
-
-		strRet = "The average play time is: " + dblAvgPlayTime + " seconds" + "\r\n";
-		strRet = strRet + "The shortest song is " + strShortest + "\r\n";
-		strRet = strRet + "The longest song is: " + strLongest + "\r\n";
-		strRet = strRet + "Total play time: " + intTotalPlayTime + " seconds" + "\r\n";
 
 		return strRet;
 	}
@@ -228,7 +222,6 @@ public class PlayList
 
 	//Overrides
 	/** toString
-	 * @param nothing
 	 * @return the playlist list/display
 	 */
 	public String toString(){
@@ -246,12 +239,17 @@ public class PlayList
 		Song objSong = null;
 
 		strRet = "------------------" + "\r\n";
-		strRet = strRet + this.getPlayListName() + " (" + this.getNumSongs() + ") songs" + "\r\n";
+		strRet = strRet + this.getPlayListName() + " (" + this.getNumSongs() + " songs)" + "\r\n";
 		strRet = strRet + "------------------" + "\r\n";
 
-		for (int intX = 0; intX < this.objPlayList.size(); intX++){
-			objSong = this.objPlayList.get(intX);
-			strRet = strRet + "(" + intX + ") " + objSong.toString() + "\r\n";
+		if (this.objPlayList.size() > 0){
+			for (int intX = 0; intX < this.objPlayList.size(); intX++){
+				objSong = this.objPlayList.get(intX);
+				strRet = strRet + "(" + intX + ") " + objSong.toString() + "\r\n";
+			}
+		}
+		else{
+			strRet = strRet + "There are no songs." + "\r\n";
 		}
 
 		strRet = strRet + "------------------" + "\r\n";
