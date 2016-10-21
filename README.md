@@ -1,0 +1,61 @@
+﻿# Project 3: Jukebox
+
+* Author: Henry J. Schade
+* Class: CS 121 Section 004
+* Semester: Fall 2016
+* Project Name: Jukebox
+
+## Overview
+Develop a class to represent a playlist of songs. The driver class with a menu and some methods for 
+reading Song data from files will be provided. You will be reusing the class you write later in the 
+semester.
+
+
+## Compiling and Using
+Do the following from the command line and in the Project directory.
+Compile using: 
+	"javac [Project Name]".
+Run using: 
+	"java [Project Name]"
+
+
+## Discussion
+Everything was pretty straight forward.
+When I first wrote my PlayList constructor, I put "public void PlayList(String strPlayListName){".
+The void caused issue when the rest of the code tried instantiating a PlayList, it took a bit to figure 
+out where I had messed up.
+I think the extra credit should have had the search() method return a PlayList object or integers of the 
+matching indexes.  Because I had to return an ArrayList of Songs I had a bunch of extra loops I had to go 
+through to accomplish what I think a PlayList object would have easily done.
+
+
+## Extra Credit 
+Search (10 points)
+Task 1: (6 points)
+	Modify PlayList class and add a search() method.
+	Add a search option to the Jukebox menu.
+	After displaying the search results, prompt the user for the index of a particular song to play.
+Task 2: (4 points)
+	Add a test case to the PlayListTest class for the search() method.
+
+
+## Sources used
+The project assignment page, and links there in as neccessary:
+http://cs.boisestate.edu/~cs121/projects/p3/
+
+Google search engine:
+For java syntax lookup.  Quick searches on different java methods, and their paramaters.
+
+The code has also been documented with URL's, near the relevent code blocks, that were used to "discover" how 
+to implement things we have not been taught yet, that were above and beyond.
+
+Misc URL's that helped along the way:
+
+ArrayList info (as a referance this time):
+http://docs.oracle.com/javase/6/docs/api/java/util/ArrayList.html
+
+How to setup sorting of ArrayLists (this is still involved, and I'm still wrapping my head around it):
+http://beginnersbook.com/2013/12/java-arraylist-of-object-sort-example-comparable-and-comparator/
+http://stackoverflow.com/questions/18441846/how-to-sort-an-arraylist-in-java
+
+http://stackoverflow.com/questions/12715246/how-to-check-if-a-character-in-a-string-is-a-digit-or-letter
